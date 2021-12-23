@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WS Consume</title>
+    <script scr="jquery.js"></script>
+    <script scr=""></script>
+  </head>
+  <body>
+    <button onclick="openXMLMhs()">Show Data Mahasiswa in XML</button>
+    <button onclick="openJsonMhs()">Show Data Mahasiswa in Json</button>
+    <hr />
+    <div id="viewer"></div>
+    <script>
+      //var view = document.getElementById("viewer");
+      var view = $("#viewer");
+      let result = "";
+
+      function openXMLMhs() {
+        let url = "http://localhost:8080/datamhsXML";
+        fetch(url)
+          .then((result) => {
+            return result.text();
+          })
+          .then((data) => {
+            view.innerHTML = data;
+            console.log("XML:" + data);
+          });
+      }
+      function openJsonMhs() {
+        let url = "http://localhost:8080/datamhsJSON";
+        fetch(url)
+          .then((result) => {
+            return result.text();
+          })
+          .then((data) => {
+            view.innerHTML = data;
+            //show(data);
+            //view.innerHTML = json[0];
+            //view.innerHTML = data[0];
+            console.log(data);
+          });
+      }
+
+      /*
+      function show(data) {
+        view.innerHTML = "";
+        for (i = 0; i < data.length; i++) {
+          result += i + 1 + ". " + data[i] + "<br>";
+        }
+        view.innerHTML = result;
+      }
+	  */
+    </script>
+  </body>
+</html>
